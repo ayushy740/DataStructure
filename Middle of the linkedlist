@@ -1,0 +1,26 @@
+class Solution {
+    int getMiddle(Node head) {
+        // code here
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        int i=1;
+        hm.put(i,head.data);
+        int mid;
+        head=head.next;
+        while(head!=null)
+        {
+            i++;
+            hm.put(i,head.data);
+            head=head.next;
+            
+        }
+        
+        if(i%2==0)
+        mid=(i/2)+1;
+        else
+        mid=(i+1)/2;
+        
+        int result = hm.get(mid);
+        return result;
+        
+    }
+}
