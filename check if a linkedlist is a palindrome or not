@@ -1,0 +1,58 @@
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}*/
+
+class Solution {
+    
+    public Node Findmid(Node head)
+    {
+        Node slow=head;
+        Node fast=head;
+        
+        while(fast!=null&&fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    
+    public boolean isPalindrome(Node head) {
+        // code here
+        if(head==null||head.next==null)
+        return true;
+        
+        Node midNode=Findmid(head);
+        
+        Node prev=null;
+        Node cur=midNode;
+        Node next;
+        
+        while(cur!=null)
+        {
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+        }
+        
+        Node right=prev;
+        Node left=head;
+        
+        while(right!=null)
+        {
+            if(left.data!=right.data)
+            return false;
+            left=left.next;
+            right=right.next;
+        }
+        return true;
+    }
+}
