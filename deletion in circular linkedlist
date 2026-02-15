@@ -1,0 +1,46 @@
+class Solution {
+    Node deleteNode(Node head, int key) {
+        
+        if (head == null)
+            return null;
+
+        Node curr = head;
+        Node prev = null;
+
+        // Case: only one node
+        if (head.next == head) {
+            if (head.data == key)
+                return null;
+            else
+                return head;
+        }
+
+        // Case: deleting head
+        if (head.data == key) {
+            
+            // Find last node
+            Node last = head;
+            while (last.next != head) {
+                last = last.next;
+            }
+
+            last.next = head.next;
+            return head.next;
+        }
+
+        // Case: deleting non-head node
+        prev = head;
+        curr = head.next;
+
+        while (curr != head) {
+            if (curr.data == key) {
+                prev.next = curr.next;
+                break;
+            }
+            prev = curr;
+            curr = curr.next;
+        }
+
+        return head;
+    }
+}
