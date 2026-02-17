@@ -1,0 +1,28 @@
+class Solution {
+    public Node reverse(Node head) {
+        // code here
+         
+        if(head == null) return null;
+        
+        Node current = head;
+        Node temp = null;
+        
+        while(current != null) {
+            
+            // swap prev and next
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            
+            // move to next node (which is previous before swap)
+            current = current.prev;
+        }
+        
+        // new head will be last processed node
+        if(temp != null) {
+            head = temp.prev;
+        }
+        
+        return head;
+    }
+}
