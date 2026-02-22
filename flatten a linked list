@@ -1,0 +1,39 @@
+class Solution {
+    public Node flatten(Node root) {
+        // code here
+        if(root==null || root.next==null)
+        return root;
+        
+        root.next=flatten(root.next);
+        return merge(root,root.next);
+    }
+    
+    Node merge(Node list1,Node list2)
+    {
+        Node newNode = new Node(0);
+        Node temp=newNode;
+        while(list1!=null&list2!=null){
+            if(list1.data<list2.data)
+            {
+                temp.bottom=list1;
+                list1=list1.bottom;
+                temp=temp.bottom;
+                
+            }else{
+                temp.bottom=list2;
+                list2=list2.bottom;
+                temp=temp.bottom;
+            }
+        }
+        if(list2!=null)
+        {
+            temp.bottom=list2;
+        }
+        if(list1!=null)
+        {
+            temp.bottom=list1;
+        }
+        
+        return newNode.bottom;
+    }
+}
