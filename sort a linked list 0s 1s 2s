@@ -1,0 +1,29 @@
+class Solution {
+    public Node segregate(Node head) {
+        // code here
+        ArrayList<Integer>list=new ArrayList<>();
+        
+        Node cur=head;
+        
+        
+        while(cur!=null)
+        {
+            list.add(cur.data);
+            cur=cur.next;
+        }
+        Collections.sort(list);
+        
+        
+        Node newNode=new Node(-1);
+        Node curr=newNode;
+        
+        for(int i = 0;i<list.size();i++)
+        {
+            Node next=new Node(list.get(i));
+            curr.next=next;
+            curr=curr.next;
+        }
+        
+        return newNode.next;
+    }
+}
